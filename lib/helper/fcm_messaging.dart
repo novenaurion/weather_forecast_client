@@ -36,13 +36,9 @@ class FirebaseMessaginHandler {
     print("hello=_inside token");
     String? deviceToken = await messaging.getToken();
     print("token==>${deviceToken}");
-    FirebaseMessaging.instance.subscribeToTopic("weather_forecast_noti").then((value) {
+   return FirebaseMessaging.instance.subscribeToTopic("weather_forecast_noti").then((value) {
       print("dones");
     }).catchError((onError)=>print("error=>$onError"));
-    CollectionReference users = FirebaseFirestore.instance.collection('users');
-    return users.add({"token":deviceToken}).then((value) {
-      print("added");
-    }).catchError((error)=>print("error-->${error.toString()}"));
 
   }
 }
